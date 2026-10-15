@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realme N61 Smooth Headshot Tool App</title>
+    <style>
+        /* मोबाइल ऐप बॉडी सेटअप */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0b0e14;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ऐप का टॉप हेडर बार */
+        .app-header {
+            background: linear-gradient(90deg, #1f4068, #162447);
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ffcc;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border-bottom: 2px solid #00ffcc;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* मुख्य ऐप कंटेनर */
+        .app-container {
+            flex: 1;
+            padding: 20px;
+            padding-bottom: 80px; /* बॉटम नेविगेशन के लिए स्पेस */
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .device-badge {
+            background: #e94560;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ऐप के कार्ड्स */
+        .app-card {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            border: 1px solid #0f3460;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #ffcc00;
+            font-size: 16px;
+            border-bottom: 1px solid #0f3460;
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            background: #0f3460;
+            color: #fff;
+            border: 1px solid #00ffcc;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* ऐप स्टाइल बटन्स */
+        .app-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-boost {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+        }
+
+        .btn-dpi {
+            background: linear-gradient(90deg, #00b09b, #96c93d);
+            margin-top: 10px;
+        }
+
+        .app-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* स्टेटस और रिजल्ट बॉक्स */
+        .status-box, .weapon-card {
+            margin-top: 15px;
+            background: #111424;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00ffcc;
+            display: none;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #1f2438;
+            font-size: 13px;
+        }
+
+        .success-text {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+
+        .headshot-badge {
+            background: linear-gradient(90deg, #00ffcc, #00b4d8);
+            color: #000;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 900;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        /* मोबाइल बॉटम नेविगेशन बार */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #162447;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+            border-top: 1px solid #0f3460;
+            z-index: 100;
+        }
+
+        .nav-item {
+            color: #8e9bb0;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .nav-item.active {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ऐप का शीर्ष हेडर बार -->
+    <div class="app-header">
+        ⚡ Realme N61 Pro Tool
+    </div>
+
+    <!-- ऐप की मुख्य स्क्रीन -->
+    <div class="app-container">
+        
+        <div class="device-badge">⚙️ TARGETED: NARZO N61 (4GB/90Hz)</div>
+
+        <!-- कार्ड 1: परफॉर्मेंस बूस्टर -->
+        <div class="app-card">
+            <h3>🚀 गेमिंग ऑप्टिमाइज़र</h3>
+            <div class="form-group">
+                <label for="boostProfile">बूस्ट प्रोफाइल चुनें:</label>
+                <select id="boostProfile">
+                    <option value="maxSmooth">अल्ट्रा स्मूथ मोड (90Hz Locked)</option>
+                    <option value="extremeDrag">सुपर फास्ट ड्रैग (टच रिस्पॉन्स)</option>
+                </select>
+            </div>
+            <button class="app-btn btn-boost" onclick="activateSmoothBoost()">मोबाइल बूस्ट करें</button>
+
+            <!-- बूस्ट रिजल्ट -->
+            <div class="status-box" id="statusBox">
+                <div class="status-item"><span>रिफ्रेश रेट:</span> <strong class="success-text">90Hz Locked</strong></div>
+                <div class="status-item"><span>टच रिस्पॉन्स:</span> <strong class="success-text">Zero Delay</strong></div>
+                <div class="headshot-badge" id="headshotBadge">🔥 100% HEADSHOT ACTIVE!</div>
+            </div>
+        </div>
+
+        <!-- कार्ड 2: गन सेटिंग गाइड -->
+        <div class="app-card">
+            <h3>🎯 सेंसिटिविटी और DPI टूल्स</h3>
+            <div class="form-group">
+                <label for="weaponSelect">हथियार (Gun) चुनें:</label>
+                <select id="weaponSelect">
+                    <option value="desertEagle">Desert Eagle (वन-टैप)</option>
+                    <option value="shotgun">M1887 / Shotgun (क्लोज रेंज)</option>
+                    <option value="smg">MP40 / UMP (स्प्रे कंट्रोल)</option>
+                </select>
+            </div>
+            <button class="app-btn btn-dpi" onclick="showWeaponDPI()">बेस्ट DPI कॉन्फ़िगर करें</button>
+
+            <!-- गन रिजल्ट -->
+            <div class="weapon-card" id="weaponCard">
+                <h4 id="wTitle" style="color: #ffcc00; margin: 5px 0;">-</h4>
+                <div class="status-item"><span>DPI (Smallest Width):</span> <strong id="wDpi" style="color:#00ffcc;">-</strong></div>
+                <div class="status-item" style="border:none; flex-direction: column; gap:5px; padding-top:10px;">
+                    <span style="font-weight:bold; color:#ff4757;">ड्रैग गाइड:</span>
+                    <span id="wTip" style="color: #bbb;">-</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- एंड्रॉइड स्टाइल बॉटम नेविगेशन बार -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <span class="nav-icon">⚡</span>
+            बूस्टर
+        </div>
+        <div class="nav-item" onclick="alert('प्रीमियम फीचर्स जल्द आ रहे हैं!')">
+            <span class="nav-icon">🛡️</span>
+            एंटी-लैग
+        </div>
+        <div class="nav-item" onclick="alert('सेटिंग्स ऐप के अंदर ऑटो-सिंक हो चुकी हैं।')">
+            <span class="nav-icon">⚙️</span>
+            सेटिंग्स
+        </div>
+    </div>
+
+    <!-- इंटरेक्टिव जावास्क्रिप्ट लॉजिक -->
+    <script>
+        function activateSmoothBoost() {
+            document.getElementById('statusBox').style.display = 'block';
+            document.getElementById('headshotBadge').style.display = 'block';
+            alert("🚀 Realme N61 सफलतापूर्वक ऑप्टिमाइज़ हो गया है!");
+        }
+
+        function showWeaponDPI() {
+            const weapon = document.getElementById('weaponSelect').value;
+            const card = document.getElementById('weaponCard');
+            let title, dpi, tip;
+            
+            if (weapon === 'desertEagle') {
+                title = "🔫 Desert Eagle (One-Tap)";
+                dpi = "460 DPI";
+                tip = "क्रॉसएयर को एनिमी के चेस्ट पर लॉक करके 90Hz स्क्रीन पर तेजी से ऊपर की तरफ सीधे ड्रैग करें।";
+            } else if (weapon === 'shotgun') {
+                title = "💥 M1887 & Shotgun";
+                dpi = "420 DPI";
+                tip = "क्लोज रेंज में जंप बटन दबाने के साथ ही रोटेशन ड्रैग का उपयोग करें, सीधे हेडशॉट लगेगा।";
+            } else {
+                title = "🔥 MP40, UMP & SCAR";
+                dpi = "440 DPI";
+                tip = "बिना उंगली हटाए लगातार गोलियां चलाते समय एम (Aim) को स्मूथली ऊपर खींचते रहें।";
+            }
+            
+            document.getElementById('wTitle').innerText = title;
+            document.getElementById('wDpi').innerText = dpi;
+            document.getElementById('wTip').innerText = tip;
+            card.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
